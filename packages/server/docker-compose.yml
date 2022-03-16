@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  # Connection URL mongodb://root:root@localhost:27017
+  mongo:
+    container_name: mongo
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    ports:
+      - "127.0.0.1:27017:27017"
+    # volumes:
+    #   - ./data:/data/db # Uncomment if its necessary to have access to the data files, create the data folder

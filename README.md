@@ -6,10 +6,6 @@ Restaurant management system.
 
 This is a monorepo that manages multiple packages and allows easy code sharing, simplified dependency management and code refactoring.
 
-## Core
-
-The packages are mainly built with Javascript, Node, Express and React.
-
 ## Setup
 
 Install the dependencies.
@@ -24,7 +20,13 @@ Clean previous installations, if necessary.
 npx lerna clean -y
 ```
 
-## Execute
+If the application will run locally also setup all the packages.
+
+```sh
+yarn setup:local
+```
+
+## Run
 
 Start all packages.
 
@@ -44,7 +46,7 @@ yarn test
 
 ## Documentation
 
-Check the read me of each package for specific details.
+Check the each package read me for more details details.
 
 ## Deploy
 
