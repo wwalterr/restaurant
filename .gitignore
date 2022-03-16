@@ -1,0 +1,16 @@
+# Editor
+.vscode
+
+# Dependency
+node_modules
+
+# Environment
+.env
+
+# Production
+build
+dist
+
+# Yarn
+yarn-debug.log*
+yarn-error.log*
