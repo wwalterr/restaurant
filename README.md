@@ -36,7 +36,15 @@ Open [localhost:3000](http://localhost:3000) for front-end and [localhost:4000](
 
 ## Test
 
+Test all packages or indicate a `--scope=package-name` to indicate one specific package.
+
+```sh
+yarn test
+```
+
 ## Documentation
+
+Check the read me of each package for specific details.
 
 ## Deploy
 
@@ -56,6 +64,24 @@ heroku create server
 
 Add the build package `heroku buildpacks:add -a server heroku/nodejs` for back-end packages, `heroku buildpacks:add -a client mars/create-react-app` for front-end packages and `heroku buildpacks:add -a name https://github.com/lstoll/heroku-buildpack-monorepo -i 1` for both.
 
-Set the base in the environment variable `heroku config:set -a server APP_BASE=restaurant/packages/server` for back-end packages and `heroku config:set -a client APP_BASE=restaurant/packages/client` for front-end packages.
+Set the base in the environment variable `heroku config:set -a server APP_BASE=packages/server` for back-end packages and `heroku config:set -a client APP_BASE=packages/client` for front-end packages.
 
-Publish the changes to the remote repository and connect the repository to Heroku, enable the automatic deploy or setup a pipeline.
+Set the remote repository for each package on Heroku.
+
+```sh
+git remote add heroku-server https://git.heroku.com/server.git
+```
+
+```sh
+git remote add heroku-client https://git.heroku.com/client.git
+```
+
+Publish the commits to the specifc remote origins.
+
+```sh
+git push -u heroku-server master
+```
+
+```sh
+git push -u heroku-client master
+```
