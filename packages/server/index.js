@@ -4,12 +4,26 @@ import cors from "cors";
 
 import compression from "compression";
 
-import { createConnection } from "./utils/index.js";
+import mongoose from "mongoose";
 
 import { Appointments, Restaurant, Tables } from "./routes/index.js";
 
 // Database
-createConnection();
+const connectionStatus = {
+  0: "disconnected",
+  1: "connected",
+  2: "connecting",
+  3: "disconnecting",
+  4: "invalid credentials",
+};
+
+try {
+  await mongoose.connect("mongodb://localhost:27017/restaurant");
+
+  console.log(`Database ${connectionStatus[mongoose.connection.readyState]}`);
+} catch (error) {
+  console.log(error.message);
+}
 
 // Server
 const server = express();
@@ -34,6 +48,6 @@ server.listen(process.env.PORT || 4000, (error) => {
   if (error) {
     console.log(`Error: ${error.message}`);
   } else {
-    console.log("Server up");
+    console.log("Server listening");
   }
 });
