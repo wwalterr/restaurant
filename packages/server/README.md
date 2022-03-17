@@ -10,7 +10,7 @@ Use the [Docker](https://www.docker.com/) container engine and [Docker Compose](
 yarn setup:local
 ```
 
-> Notice that the container should only be used for development and [Mongo Atlas](https://www.mongodb.com/atlas/database) or a in cloud solution for production since it manges replicas, shards and backup by default, in this case its not being used since Heroku charges for database usage
+> Notice that the container should only be used for development and [Mongo Atlas](https://www.mongodb.com/atlas/database) / cloud provider for production since it manges replicas, shards and backups by default, in this case its not being used since Heroku charges for database usage, thus the connection URL and environment variables are ignored
 
 ## Run
 

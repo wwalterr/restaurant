@@ -14,13 +14,9 @@ Install the dependencies.
 npx lerna bootstrap --use-workspaces
 ```
 
-Clean previous installations, if necessary.
+> Clean previous installations `npx lerna clean -y`
 
-```sh
-npx lerna clean -y
-```
-
-If the application will run locally also setup all the packages.
+Setup all the packages.
 
 ```sh
 yarn setup:local

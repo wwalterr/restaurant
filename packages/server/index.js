@@ -1,17 +1,16 @@
-const express = require("express");
+import express from "express";
+
+import { connect } from "./utils/database.js";
+
+// Database
+connect();
 
 const server = express();
 
-const port = process.env.PORT || 4000;
-
-server.get("/", (request, response) => {
-  response.status(200).json({ path: "/" });
-});
-
-server.listen(port, (error) => {
+server.listen(process.env.PORT || 4000, (error) => {
   if (error) {
     console.log(`Error: ${error.message}`);
   } else {
-    console.log(`Server listening on port ${port}`);
+    console.log("Server listening");
   }
 });
