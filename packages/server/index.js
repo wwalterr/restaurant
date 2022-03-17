@@ -5,6 +5,7 @@ import { connect } from "./utils/database.js";
 // Database
 connect();
 
+// Server
 const server = express();
 
 server.listen(process.env.PORT || 4000, (error) => {
