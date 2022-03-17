@@ -6,6 +6,8 @@ Restaurant management system.
 
 This is a monorepo that manages multiple packages and allows easy code sharing, simplified dependency management and code refactoring.
 
+> Notice that for simplicity only one Git is being used to manage all packages
+
 ## Setup
 
 Install the dependencies.

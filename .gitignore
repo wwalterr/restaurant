@@ -7,6 +7,9 @@ node_modules
 # Environment
 .env
 
+# Test
+coverage
+
 # Production
 build
 dist

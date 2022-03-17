@@ -24,7 +24,7 @@ server.disable("x-powered-by");
 // Middlewares
 server.use(cors({ credentials: true, origin: true }));
 
-server.use(compression());
+server.use(compression({ level: 6 }));
 
 server.use(express.json());
 
