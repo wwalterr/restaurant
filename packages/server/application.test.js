@@ -35,9 +35,13 @@ describe("restaurant", () => {
       .expect("Content-Type", /json/)
       .expect(200);
 
-    expect(response.body.opening).toEqual(newOpening.toISOString());
+    expect(new Date(response.body.opening).toLocaleTimeString()).toEqual(
+      newOpening.toLocaleTimeString()
+    );
 
-    expect(response.body.closing).toEqual(newClosing.toISOString());
+    expect(new Date(response.body.closing).toLocaleTimeString()).toEqual(
+      newClosing.toLocaleTimeString()
+    );
   });
 });
 
