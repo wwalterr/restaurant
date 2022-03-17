@@ -13,6 +13,8 @@ createConnection();
 const server = express();
 
 // Middlewares
+server.use(express.json());
+
 server.use(cors({ credentials: true, origin: true }));
 
 // Endpoints
@@ -26,6 +28,6 @@ server.listen(process.env.PORT || 4000, (error) => {
   if (error) {
     console.log(`Error: ${error.message}`);
   } else {
-    console.log("Server listening");
+    console.log("Server up");
   }
 });
