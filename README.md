@@ -11,7 +11,7 @@ This is a monorepo that manages multiple packages and allows easy code sharing, 
 Install the dependencies.
 
 ```sh
-npx lerna bootstrap --hoist
+npx lerna bootstrap --use-workspaces
 ```
 
 Clean previous installations, if necessary.

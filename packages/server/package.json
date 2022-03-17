@@ -5,9 +5,13 @@
   "scripts": {
     "setup:local": "docker-compose -f docker-compose.yml up -d --build",
     "start": "node index.js",
+    "start:development": "nodemon index.js",
     "test": "echo"
   },
   "dependencies": {
     "express": "^4.17.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }
