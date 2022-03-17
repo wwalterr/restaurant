@@ -32,6 +32,8 @@ yarn test
 
 ## Documentation
 
+To explore the database or create aggregation pipelines for data analysis use [Mongo Compass](https://www.mongodb.com/products/compass).
+
 ## Deploy
 
 Check the monorepo read me for more details.

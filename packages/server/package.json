@@ -7,7 +7,7 @@
     "setup:local": "docker-compose -f docker-compose.yml up -d --build",
     "start": "node index.js",
     "start:development": "nodemon index.js",
-    "test": "echo"
+    "test": "jest --silent --watchAll"
   },
   "dependencies": {
     "compression": "^1.7.4",
@@ -16,6 +16,11 @@
     "mongoose": "^6.2.7"
   },
   "devDependencies": {
-    "nodemon": "^2.0.15"
+    "@babel/core": "^7.17.7",
+    "@babel/preset-env": "^7.16.11",
+    "babel-jest": "^27.5.1",
+    "jest": "^27.5.1",
+    "nodemon": "^2.0.15",
+    "supertest": "^6.2.2"
   }
 }
