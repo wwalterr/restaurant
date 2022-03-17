@@ -2,6 +2,8 @@ import express from "express";
 
 import cors from "cors";
 
+import compression from "compression";
+
 import { createConnection } from "./utils/index.js";
 
 import { Appointments, Restaurant, Tables } from "./routes/index.js";
@@ -12,10 +14,14 @@ createConnection();
 // Server
 const server = express();
 
-// Middlewares
-server.use(express.json());
+server.disable("x-powered-by");
 
+// Middlewares
 server.use(cors({ credentials: true, origin: true }));
+
+server.use(compression());
+
+server.use(express.json());
 
 // Endpoints
 server.use("/appointments", Appointments);
