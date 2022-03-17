@@ -3,29 +3,60 @@ import request from "supertest";
 import server from "./application";
 
 describe("restaurant", () => {
-  it("defines open hours", () => {});
+  const opening = new Date();
 
-  it("updates open hours", () => {});
+  const closing = new Date(new Date(opening).setHours(opening.getHours() + 8));
 
-  it("return open hours", () => {});
+  it("defines open hours", async () => {
+    const response = await request(server)
+      .post("/restaurant")
+      .send({ opening, closing })
+      .expect("Content-Type", /json/)
+      .expect(200);
+  });
+
+  const newOpening = new Date();
+
+  const newClosing = new Date(
+    new Date(opening).setHours(opening.getHours() + 8)
+  );
+
+  it("updates open hours", async () => {
+    const response = await request(server)
+      .put("/restaurant")
+      .send({ opening: newOpening, closing: newClosing })
+      .expect("Content-Type", /json/)
+      .expect(200);
+  });
+
+  it("return open hours", async () => {
+    const response = await request(server)
+      .get("/restaurant")
+      .expect("Content-Type", /json/)
+      .expect(200);
+
+    expect(response.body.opening).toEqual(newOpening.toISOString());
+
+    expect(response.body.closing).toEqual(newClosing.toISOString());
+  });
 });
 
 describe("tables", () => {
-  it("creates a table", () => {});
+  it("creates a table", async () => {});
 
-  it("updates a table", () => {});
+  it("updates a table", async () => {});
 
-  it("find a table", () => {});
+  it("find a table", async () => {});
 
-  it("return all tables", () => {});
+  it("return all tables", async () => {});
 });
 
 describe("appointments", () => {
-  it("creates an appointment", () => {});
+  it("creates an appointment", async () => {});
 
-  it("updates an appointment", () => {});
+  it("updates an appointment", async () => {});
 
-  it("finds an appointment", () => {});
+  it("finds an appointment", async () => {});
 
-  it("return all appointments", () => {});
+  it("return all appointments", async () => {});
 });
