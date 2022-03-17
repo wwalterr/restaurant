@@ -1,12 +1,21 @@
 import express from "express";
 
-import { connect } from "./utils/database.js";
+import { createConnection } from "./utils/index.js";
+
+import { Appointments, Restaurant, Tables } from "./routes/index.js";
 
 // Database
-connect();
+createConnection();
 
 // Server
 const server = express();
+
+// Endpoints
+server.use("/appointments", Appointments);
+
+server.use("/restaurant", Restaurant);
+
+server.use("/tables", Tables);
 
 server.listen(process.env.PORT || 4000, (error) => {
   if (error) {

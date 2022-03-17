@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const connect = () => {
+const createConnection = () => {
   mongoose.connect(
     "mongodb://mongo:27017/restaurant",
     {
@@ -16,4 +16,4 @@ const connect = () => {
   );
 };
 
-export { connect };
+export { createConnection };
