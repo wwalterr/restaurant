@@ -34,6 +34,8 @@ yarn test
 
 To explore the database or create aggregation pipelines for data analysis use [Mongo Compass](https://www.mongodb.com/products/compass).
 
+> For simplicity Swagger is not being used, since the tests calls all the routes
+
 ## Deploy
 
 Check the monorepo read me for more details.
