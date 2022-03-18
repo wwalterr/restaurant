@@ -3,7 +3,7 @@ import Joi from "joi";
 const createSchemaBody = Joi.object({
   restaurant: Joi.string().required(),
   table: Joi.number().min(1).required(),
-  seats: Joi.number().min(1).required(),
+  seats: Joi.number().min(1),
 });
 
 const updateSchemaParams = Joi.object({
@@ -11,7 +11,7 @@ const updateSchemaParams = Joi.object({
 });
 
 const updateSchemaBody = Joi.object({
-  seats: Joi.number().min(1).required(),
+  seats: Joi.number().min(1),
 });
 
 const findSchemaParams = Joi.object({

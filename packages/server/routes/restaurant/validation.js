@@ -11,8 +11,8 @@ const updateSchemaParams = Joi.object({
 });
 
 const updateSchemaBody = Joi.object({
-  opening: Joi.date().required(),
-  closing: Joi.date().required(),
+  opening: Joi.date(),
+  closing: Joi.date(),
 });
 
 const findSchemaParams = Joi.object({
