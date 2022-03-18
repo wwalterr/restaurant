@@ -93,11 +93,51 @@ describe("tables", () => {
 });
 
 describe("appointments", () => {
-  it("creates an appointment", async () => {});
+  it("creates an appointment", async () => {
+    const response = await request(server)
+      .post("/appointments")
+      .send({ table: 1, date: new Date(), duration: 1, status: "pending" })
+      .expect("Content-Type", /json/)
+      .expect(200);
+  });
 
-  it("updates an appointment", async () => {});
+  it("updates an appointment", async () => {
+    const response = await request(server)
+      .put("/appointments/1")
+      .send({ table: 1, date: new Date(), duration: 1, status: "accepted" })
+      .expect("Content-Type", /json/)
+      .expect(200);
+  });
 
-  it("finds an appointment", async () => {});
+  it("finds an appointment", async () => {
+    const response = await request(server)
+      .get("/appointments/1")
+      .expect("Content-Type", /json/)
+      .expect(200);
 
-  it("return all appointments", async () => {});
+    expect(response.body).toEqual(
+      expect.objectContaining({
+        table: expect.any(Number),
+        date: expect.any(String),
+        duration: expect.any(Number),
+        status: expect.any(String),
+      })
+    );
+  });
+
+  it("return all appointments", async () => {
+    const response = await request(server)
+      .get("/appointments")
+      .expect("Content-Type", /json/)
+      .expect(200);
+
+    expect(response.body).toEqual(
+      expect.objectContaining({
+        table: expect.any(Number),
+        date: expect.any(String),
+        duration: expect.any(Number),
+        status: expect.any(String),
+      })
+    );
+  });
 });
