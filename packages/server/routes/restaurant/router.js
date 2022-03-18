@@ -7,9 +7,9 @@ import {
   updateSchemaParams,
   updateSchemaBody,
   findSchemaParams,
-} from "./validation";
+} from "./validation.js";
 
-import Restaurant from "./model";
+import Restaurant from "./model.js";
 
 const router = Router();
 

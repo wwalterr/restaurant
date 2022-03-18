@@ -7,7 +7,7 @@ import {
   updateSchemaParams,
   updateSchemaBody,
   findSchemaParams,
-} from "./validation";
+} from "./validation.js";
 
 const router = Router();
 
