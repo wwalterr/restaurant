@@ -1,6 +1,16 @@
 import mongoose from "mongoose";
 
 const schema = new mongoose.Schema({
+  client: {
+    type: String,
+    immutable: true,
+    required: true,
+  },
+  restaurant: {
+    type: String,
+    immutable: true,
+    required: true,
+  },
   table: {
     type: Number,
     required: true,
@@ -18,7 +28,6 @@ const schema = new mongoose.Schema({
     enum: ["pending", "accepted", "rejected"],
     default: "pending",
   },
-  client: String,
 });
 
 const Appointments = mongoose.model("Appointments", schema);

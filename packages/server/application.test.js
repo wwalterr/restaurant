@@ -7,39 +7,51 @@ describe("restaurant", () => {
 
   const closing = new Date(new Date(opening).setHours(opening.getHours() + 8));
 
-  it("defines open hours", async () => {
+  it("creates a restaurant", async () => {
     const response = await request(server)
       .post("/restaurant")
+      .send({ restaurant: "restaurant", opening, closing })
+      .expect("Content-Type", /json/)
+      .expect(200);
+  });
+
+  it("updates a restaurant", async () => {
+    const response = await request(server)
+      .put("/restaurant/restaurant")
       .send({ opening, closing })
       .expect("Content-Type", /json/)
       .expect(200);
   });
 
-  const newOpening = new Date();
-
-  const newClosing = new Date(
-    new Date(opening).setHours(opening.getHours() + 8)
-  );
-
-  it("updates open hours", async () => {
+  it("find a restaurant", async () => {
     const response = await request(server)
-      .put("/restaurant")
-      .send({ opening: newOpening, closing: newClosing })
+      .get("/restaurant/restaurant")
       .expect("Content-Type", /json/)
       .expect(200);
+
+    expect(response.body).toEqual(
+      expect.objectContaining({
+        restaurant: expect.any(String),
+        opening: expect.any(String),
+        closing: expect.any(String),
+      })
+    );
   });
 
-  it("return open hours", async () => {
+  it("list all restaurants", async () => {
     const response = await request(server)
       .get("/restaurant")
       .expect("Content-Type", /json/)
       .expect(200);
 
     expect(response.body).toEqual(
-      expect.objectContaining({
-        opening: expect.any(String),
-        closing: expect.any(String),
-      })
+      expect.arrayContaining([
+        expect.objectContaining({
+          restaurant: expect.any(String),
+          opening: expect.any(String),
+          closing: expect.any(String),
+        }),
+      ])
     );
   });
 });
@@ -48,7 +60,7 @@ describe("tables", () => {
   it("creates a table", async () => {
     const response = await request(server)
       .post("/tables")
-      .send({ table: 1, seats: 4 })
+      .send({ table: 1, seats: 8 })
       .expect("Content-Type", /json/)
       .expect(200);
   });
@@ -75,9 +87,9 @@ describe("tables", () => {
     );
   });
 
-  it("return all tables", async () => {
+  it("list all tables", async () => {
     const response = await request(server)
-      .get("/tables")
+      .get("/tables/restaurant")
       .expect("Content-Type", /json/)
       .expect(200);
 
@@ -97,11 +109,12 @@ describe("appointments", () => {
     const response = await request(server)
       .post("/appointments")
       .send({
+        client: "client",
+        restaurant: "restaurant",
         table: 1,
         date: new Date(),
         duration: 1,
         status: "pending",
-        client: "name",
       })
       .expect("Content-Type", /json/)
       .expect(200);
@@ -109,48 +122,31 @@ describe("appointments", () => {
 
   it("updates an appointment", async () => {
     const response = await request(server)
-      .put("/appointments/1")
+      .put("/appointments/restaurant/client")
       .send({
         table: 1,
         date: new Date(),
         duration: 1,
         status: "accepted",
-        client: "name",
       })
       .expect("Content-Type", /json/)
       .expect(200);
   });
 
-  it("finds an appointment", async () => {
+  it("find an appointment", async () => {
     const response = await request(server)
-      .get("/appointments/1")
+      .get("/appointments/restaurant/client")
       .expect("Content-Type", /json/)
       .expect(200);
 
     expect(response.body).toEqual(
       expect.objectContaining({
+        client: expect.any(String),
+        restaurant: expect.any(String),
         table: expect.any(Number),
         date: expect.any(String),
         duration: expect.any(Number),
         status: expect.any(String),
-        client: expect.any(String),
-      })
-    );
-  });
-
-  it("return all appointments", async () => {
-    const response = await request(server)
-      .get("/appointments")
-      .expect("Content-Type", /json/)
-      .expect(200);
-
-    expect(response.body).toEqual(
-      expect.objectContaining({
-        table: expect.any(Number),
-        date: expect.any(String),
-        duration: expect.any(Number),
-        status: expect.any(String),
-        client: expect.any(String),
       })
     );
   });

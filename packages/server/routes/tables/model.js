@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 const schema = new mongoose.Schema({
   table: {
     type: Number,
+    immutable: true,
     required: true,
   },
   seats: {
