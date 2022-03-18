@@ -2,6 +2,10 @@
 
 REST API for restaurant management system.
 
+## Architecture
+
+A modular architecture is implemented by separating validation, database and logic, in special the database code could be reduced by one third if database static methods or the schema is used to implement functions that share code with other modules and just the database name, parameters or body changes.
+
 ## Setup
 
 Use the [Docker](https://www.docker.com/) container engine and [Docker Compose](https://docs.docker.com/compose/) wrapper to create a local database instance.
