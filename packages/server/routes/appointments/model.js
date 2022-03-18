@@ -18,6 +18,7 @@ const schema = new mongoose.Schema({
     enum: ["pending", "accepted", "rejected"],
     default: "pending",
   },
+  client: String,
 });
 
 const Appointments = mongoose.model("Appointments", schema);

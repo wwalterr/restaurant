@@ -48,7 +48,7 @@ describe("tables", () => {
   it("creates a table", async () => {
     const response = await request(server)
       .post("/tables")
-      .send({ identifier: 1, seats: 4 })
+      .send({ table: 1, seats: 4 })
       .expect("Content-Type", /json/)
       .expect(200);
   });
@@ -69,7 +69,7 @@ describe("tables", () => {
 
     expect(response.body).toEqual(
       expect.objectContaining({
-        identifier: expect.any(Number),
+        table: expect.any(Number),
         seats: expect.any(Number),
       })
     );
@@ -84,7 +84,7 @@ describe("tables", () => {
     expect(response.body).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
-          identifier: expect.any(Number),
+          table: expect.any(Number),
           seats: expect.any(Number),
         }),
       ])
@@ -96,7 +96,13 @@ describe("appointments", () => {
   it("creates an appointment", async () => {
     const response = await request(server)
       .post("/appointments")
-      .send({ table: 1, date: new Date(), duration: 1, status: "pending" })
+      .send({
+        table: 1,
+        date: new Date(),
+        duration: 1,
+        status: "pending",
+        client: "name",
+      })
       .expect("Content-Type", /json/)
       .expect(200);
   });
@@ -104,7 +110,13 @@ describe("appointments", () => {
   it("updates an appointment", async () => {
     const response = await request(server)
       .put("/appointments/1")
-      .send({ table: 1, date: new Date(), duration: 1, status: "accepted" })
+      .send({
+        table: 1,
+        date: new Date(),
+        duration: 1,
+        status: "accepted",
+        client: "name",
+      })
       .expect("Content-Type", /json/)
       .expect(200);
   });
@@ -121,6 +133,7 @@ describe("appointments", () => {
         date: expect.any(String),
         duration: expect.any(Number),
         status: expect.any(String),
+        client: expect.any(String),
       })
     );
   });
@@ -137,6 +150,7 @@ describe("appointments", () => {
         date: expect.any(String),
         duration: expect.any(Number),
         status: expect.any(String),
+        client: expect.any(String),
       })
     );
   });
