@@ -36,8 +36,8 @@ router.get(
   async (request, response) => {
     response.status(200).json({
       restaurant: "",
-      opening: new Date().toISOString(),
-      closing: new Date().toISOString(),
+      opening: new Date(),
+      closing: new Date(),
     });
   }
 );
@@ -46,8 +46,8 @@ router.get("/", async (request, response) => {
   response.status(200).json([
     {
       restaurant: "",
-      opening: new Date().toISOString(),
-      closing: new Date().toISOString(),
+      opening: new Date(),
+      closing: new Date(),
     },
   ]);
 });

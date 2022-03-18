@@ -106,8 +106,6 @@ describe("tables", () => {
   });
 });
 
-/*
-
 describe("appointments", () => {
   it("creates an appointment", async () => {
     const response = await request(server)
@@ -155,5 +153,3 @@ describe("appointments", () => {
     );
   });
 });
-
-*/

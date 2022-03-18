@@ -13,15 +13,19 @@ const router = Router();
 
 const validator = joi.createValidator({});
 
-router.post("/", validator.body(createSchemaBody), (request, response) => {
-  response.status(200).json({});
-});
+router.post(
+  "/",
+  validator.body(createSchemaBody),
+  async (request, response) => {
+    response.status(200).json({});
+  }
+);
 
 router.put(
   "/:table",
   validator.params(updateSchemaParams),
   validator.body(updateSchemaBody),
-  (request, response) => {
+  async (request, response) => {
     response.status(200).json({});
   }
 );
@@ -29,12 +33,12 @@ router.put(
 router.get(
   "/:table",
   validator.params(findSchemaParams),
-  (request, response) => {
+  async (request, response) => {
     response.status(200).json({ restaurant: "restaurant", table: 1, seats: 8 });
   }
 );
 
-router.get("/", (request, response) => {
+router.get("/", async (request, response) => {
   response.status(200).json([{ restaurant: "restaurant", table: 1, seats: 8 }]);
 });
 
