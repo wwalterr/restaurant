@@ -9,7 +9,7 @@ import {
   findSchemaParams,
 } from "./validation.js";
 
-import Restaurant from "./model.js";
+import Restaurants from "./model.js";
 
 const router = Router();
 
@@ -20,7 +20,7 @@ router.post(
   validator.body(createSchemaBody),
   async (request, response) => {
     try {
-      const cursor = await Restaurant.create(request.body);
+      const cursor = await Restaurants.create(request.body);
     } catch (error) {
       throw error;
     }
@@ -35,7 +35,7 @@ router.put(
   validator.body(updateSchemaBody),
   async (request, response) => {
     try {
-      const cursor = await Restaurant.findOneAndUpdate(
+      const cursor = await Restaurants.findOneAndUpdate(
         request.params,
         request.body
       );
@@ -52,7 +52,7 @@ router.get(
   validator.params(findSchemaParams),
   async (request, response) => {
     try {
-      const cursor = await Restaurant.findOne(request.params).select({
+      const cursor = await Restaurants.findOne(request.params).select({
         _id: 0,
         __v: 0,
       });
@@ -68,7 +68,7 @@ router.get(
 
 router.get("/", async (request, response) => {
   try {
-    const cursor = await Restaurant.find({}).select({
+    const cursor = await Restaurants.find({}).select({
       _id: 0,
       __v: 0,
     });

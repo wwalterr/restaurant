@@ -4,14 +4,14 @@ import server from "./application";
 
 jest.setTimeout(10000);
 
-describe("restaurant", () => {
+describe("restaurants", () => {
   const opening = new Date();
 
   const closing = new Date(new Date(opening).setHours(opening.getHours() + 8));
 
   it("creates a restaurant", async () => {
     const response = await request(server)
-      .post("/restaurant")
+      .post("/restaurants")
       .send({ restaurant: "restaurant", opening, closing })
       .expect("Content-Type", /json/)
       .expect(200);
@@ -25,7 +25,7 @@ describe("restaurant", () => {
 
   it("updates a restaurant", async () => {
     const response = await request(server)
-      .put("/restaurant/restaurant")
+      .put("/restaurants/restaurant")
       .send({ opening, closing })
       .expect("Content-Type", /json/)
       .expect(200);
@@ -39,7 +39,7 @@ describe("restaurant", () => {
 
   it("find a restaurant", async () => {
     const response = await request(server)
-      .get("/restaurant/restaurant")
+      .get("/restaurants/restaurant")
       .expect("Content-Type", /json/)
       .expect(200);
 
@@ -57,7 +57,7 @@ describe("restaurant", () => {
 
   it("list all restaurants", async () => {
     const response = await request(server)
-      .get("/restaurant")
+      .get("/restaurants")
       .expect("Content-Type", /json/)
       .expect(200);
 

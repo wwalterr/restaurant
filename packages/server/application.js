@@ -6,11 +6,11 @@ import compression from "compression";
 
 import mongoose from "mongoose";
 
-import { Appointments, Restaurant, Tables } from "./routes/index.js";
+import { Appointments, Restaurants, Tables } from "./routes/index.js";
 
 // Database
 mongoose
-  .connect("mongodb://localhost:27017/restaurant")
+  .connect("mongodb://localhost:27017/manager")
   .then((value) => {
     console.info(`Database ${mongoose.STATES[mongoose.connection.readyState]}`);
   })
@@ -31,7 +31,7 @@ server.use(express.json());
 // Endpoints
 server.use("/appointments", Appointments);
 
-server.use("/restaurant", Restaurant);
+server.use("/restaurants", Restaurants);
 
 server.use("/tables", Tables);
 
