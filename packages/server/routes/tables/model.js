@@ -1,22 +1,27 @@
 import mongoose from "mongoose";
 
-const schema = new mongoose.Schema({
-  restaurant: {
-    type: String,
-    immutable: true,
-    required: true,
+const schema = new mongoose.Schema(
+  {
+    restaurant: {
+      type: String,
+      immutable: true,
+      required: true,
+    },
+    table: {
+      type: Number,
+      immutable: true,
+      required: true,
+    },
+    seats: {
+      type: Number,
+      default: 1,
+      min: 1,
+    },
   },
-  table: {
-    type: Number,
-    immutable: true,
-    required: true,
-  },
-  seats: {
-    type: Number,
-    default: 1,
-    min: 1,
-  },
-});
+  {
+    timestamps: true,
+  }
+);
 
 const Tables = mongoose.model("Tables", schema);
 

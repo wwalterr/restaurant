@@ -2,6 +2,8 @@ import request from "supertest";
 
 import server from "./application";
 
+jest.setTimeout(10000);
+
 describe("restaurant", () => {
   const opening = new Date();
 
