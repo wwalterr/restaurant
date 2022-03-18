@@ -4,7 +4,7 @@ Restaurant management system.
 
 ## Architecture
 
-This is a monorepo that manages multiple packages and allows easy code sharing, simplified dependency management and code refactoring.
+This is a [monorepo](https://en.wikipedia.org/wiki/Monorepo) that manages multiple packages and allows easy code sharing, simplified dependency management and code refactoring.
 
 > Notice that for simplicity only one Git is being used to manage all packages
 
@@ -12,11 +12,11 @@ This is a monorepo that manages multiple packages and allows easy code sharing, 
 
 Install the dependencies.
 
+> Clean previous installations `npx lerna clean -y`
+
 ```sh
 npx lerna bootstrap --use-workspaces
 ```
-
-> Clean previous installations `npx lerna clean -y`
 
 Setup all the packages.
 
@@ -32,11 +32,11 @@ Start all packages.
 yarn start
 ```
 
-Open [localhost:3000](http://localhost:3000) for front-end and [localhost:4000](http://localhost:4000) for back-end.
+Open [localhost:3000](http://localhost:3000) for front-end or [localhost:4000](http://localhost:4000) for back-end.
 
 ## Test
 
-Test all packages or indicate a `--scope=package-name` to indicate one specific package.
+Test all packages.
 
 ```sh
 yarn test
@@ -52,7 +52,7 @@ The following instructions describes how to deploy each monorepo package on [Her
 
 Create one application for each package.
 
-> Notice that Heroku requires each application to have a unique name, thus add some identification after the package name to make it unique
+> Notice that Heroku requires each application to have a unique name
 
 ```sh
 heroku create client

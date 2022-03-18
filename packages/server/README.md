@@ -1,6 +1,6 @@
 # Server
 
-REST API for restaurant management system.
+Restaurant management system.
 
 ## Architecture
 
@@ -14,7 +14,7 @@ Use the [Docker](https://www.docker.com/) container engine and [Docker Compose](
 yarn setup:local
 ```
 
-> Notice that the container should only be used for development and [Mongo Atlas](https://www.mongodb.com/atlas/database) / cloud provider for production since it manges replicas, shards and backups by default, in this case its not being used since Heroku charges for database usage, thus the connection URL and environment variables are ignored
+> Notice that the container should only be used for development and [Mongo Atlas](https://www.mongodb.com/atlas/database) or a cloud provider for production since it manges replicas, shards and backups by default, in this case its not being used since Heroku charges for database usage, thus the connection URL along with environment variables are not specially configured
 
 ## Run
 
@@ -38,7 +38,7 @@ yarn test
 
 To explore the database or create aggregation pipelines for data analysis use [Mongo Compass](https://www.mongodb.com/products/compass).
 
-> For simplicity Swagger is not being used, since the tests calls all the routes
+> For simplicity Swagger is not being used, since the available tests calls all the routes and describes its parameters and goals
 
 ## Deploy
 
