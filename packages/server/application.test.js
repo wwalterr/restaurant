@@ -15,6 +15,12 @@ describe("restaurant", () => {
       .send({ restaurant: "restaurant", opening, closing })
       .expect("Content-Type", /json/)
       .expect(200);
+
+    expect(response.body).toEqual(
+      expect.objectContaining({
+        status: expect.any(Boolean),
+      })
+    );
   });
 
   it("updates a restaurant", async () => {
@@ -23,6 +29,12 @@ describe("restaurant", () => {
       .send({ opening, closing })
       .expect("Content-Type", /json/)
       .expect(200);
+
+    expect(response.body).toEqual(
+      expect.objectContaining({
+        status: expect.any(Boolean),
+      })
+    );
   });
 
   it("find a restaurant", async () => {
@@ -33,9 +45,12 @@ describe("restaurant", () => {
 
     expect(response.body).toEqual(
       expect.objectContaining({
-        restaurant: expect.any(String),
-        opening: expect.any(String),
-        closing: expect.any(String),
+        status: expect.any(Boolean),
+        data: expect.objectContaining({
+          restaurant: expect.any(String),
+          opening: expect.any(String),
+          closing: expect.any(String),
+        }),
       })
     );
   });
@@ -47,13 +62,16 @@ describe("restaurant", () => {
       .expect(200);
 
     expect(response.body).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          restaurant: expect.any(String),
-          opening: expect.any(String),
-          closing: expect.any(String),
-        }),
-      ])
+      expect.objectContaining({
+        status: expect.any(Boolean),
+        data: expect.arrayContaining([
+          expect.objectContaining({
+            restaurant: expect.any(String),
+            opening: expect.any(String),
+            closing: expect.any(String),
+          }),
+        ]),
+      })
     );
   });
 });
@@ -65,6 +83,12 @@ describe("tables", () => {
       .send({ restaurant: "restaurant", table: 1, seats: 8 })
       .expect("Content-Type", /json/)
       .expect(200);
+
+    expect(response.body).toEqual(
+      expect.objectContaining({
+        status: expect.any(Boolean),
+      })
+    );
   });
 
   it("updates a table", async () => {
@@ -73,6 +97,12 @@ describe("tables", () => {
       .send({ seats: 8 })
       .expect("Content-Type", /json/)
       .expect(200);
+
+    expect(response.body).toEqual(
+      expect.objectContaining({
+        status: expect.any(Boolean),
+      })
+    );
   });
 
   it("find a table", async () => {
@@ -83,9 +113,12 @@ describe("tables", () => {
 
     expect(response.body).toEqual(
       expect.objectContaining({
-        restaurant: expect.any(String),
-        table: expect.any(Number),
-        seats: expect.any(Number),
+        status: expect.any(Boolean),
+        data: expect.objectContaining({
+          restaurant: expect.any(String),
+          table: expect.any(Number),
+          seats: expect.any(Number),
+        }),
       })
     );
   });
@@ -97,13 +130,16 @@ describe("tables", () => {
       .expect(200);
 
     expect(response.body).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          restaurant: expect.any(String),
-          table: expect.any(Number),
-          seats: expect.any(Number),
-        }),
-      ])
+      expect.objectContaining({
+        status: expect.any(Boolean),
+        data: expect.arrayContaining([
+          expect.objectContaining({
+            restaurant: expect.any(String),
+            table: expect.any(Number),
+            seats: expect.any(Number),
+          }),
+        ]),
+      })
     );
   });
 });
@@ -122,6 +158,12 @@ describe("appointments", () => {
       })
       .expect("Content-Type", /json/)
       .expect(200);
+
+    expect(response.body).toEqual(
+      expect.objectContaining({
+        status: expect.any(Boolean),
+      })
+    );
   });
 
   it("updates an appointment", async () => {
@@ -135,6 +177,12 @@ describe("appointments", () => {
       })
       .expect("Content-Type", /json/)
       .expect(200);
+
+    expect(response.body).toEqual(
+      expect.objectContaining({
+        status: expect.any(Boolean),
+      })
+    );
   });
 
   it("find an appointment", async () => {
@@ -145,12 +193,15 @@ describe("appointments", () => {
 
     expect(response.body).toEqual(
       expect.objectContaining({
-        client: expect.any(String),
-        restaurant: expect.any(String),
-        table: expect.any(Number),
-        date: expect.any(String),
-        duration: expect.any(Number),
-        status: expect.any(String),
+        status: expect.any(Boolean),
+        data: expect.objectContaining({
+          client: expect.any(String),
+          restaurant: expect.any(String),
+          table: expect.any(Number),
+          date: expect.any(String),
+          duration: expect.any(Number),
+          status: expect.any(String),
+        }),
       })
     );
   });

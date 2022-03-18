@@ -17,7 +17,7 @@ router.post(
   "/",
   validator.body(createSchemaBody),
   async (request, response) => {
-    response.status(200).json({});
+    response.status(200).json({ status: true });
   }
 );
 
@@ -26,7 +26,7 @@ router.put(
   validator.params(updateSchemaParams),
   validator.body(updateSchemaBody),
   async (request, response) => {
-    response.status(200).json({});
+    response.status(200).json({ status: true });
   }
 );
 
@@ -35,12 +35,15 @@ router.get(
   validator.params(findSchemaParams),
   async (request, response) => {
     response.status(200).json({
-      client: "",
-      restaurant: "",
-      table: 1,
-      date: new Date(),
-      duration: 1,
-      status: "",
+      status: true,
+      data: {
+        client: "",
+        restaurant: "",
+        table: 1,
+        date: new Date(),
+        duration: 1,
+        status: "",
+      },
     });
   }
 );
