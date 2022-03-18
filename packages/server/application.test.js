@@ -152,7 +152,7 @@ describe("appointments", () => {
         client: "client",
         restaurant: "restaurant",
         table: 1,
-        date: new Date(),
+        date: new Date(new Date().setHours(new Date().getHours() + 8)),
         duration: 1,
         status: "pending",
       })
@@ -171,7 +171,7 @@ describe("appointments", () => {
       .put("/appointments/restaurant/client")
       .send({
         table: 1,
-        date: new Date(),
+        date: new Date(new Date().setHours(new Date().getHours() + 8)),
         duration: 1,
         status: "accepted",
       })

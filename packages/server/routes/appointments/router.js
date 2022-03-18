@@ -9,6 +9,8 @@ import {
   findSchemaParams,
 } from "./validation.js";
 
+import Appointments from "./model.js";
+
 const router = Router();
 
 const validator = joi.createValidator({});
@@ -17,6 +19,12 @@ router.post(
   "/",
   validator.body(createSchemaBody),
   async (request, response) => {
+    try {
+      const cursor = await Appointments.create(request.body);
+    } catch (error) {
+      throw error;
+    }
+
     response.status(200).json({ status: true });
   }
 );
@@ -26,6 +34,15 @@ router.put(
   validator.params(updateSchemaParams),
   validator.body(updateSchemaBody),
   async (request, response) => {
+    try {
+      const cursor = await Appointments.findOneAndUpdate(
+        request.params,
+        request.body
+      );
+    } catch (error) {
+      throw error;
+    }
+
     response.status(200).json({ status: true });
   }
 );
@@ -34,17 +51,18 @@ router.get(
   "/:restaurant/:client",
   validator.params(findSchemaParams),
   async (request, response) => {
-    response.status(200).json({
-      status: true,
-      data: {
-        client: "",
-        restaurant: "",
-        table: 1,
-        date: new Date(),
-        duration: 1,
-        status: "",
-      },
-    });
+    try {
+      const cursor = await Appointments.findOne(request.params).select({
+        _id: 0,
+        __v: 0,
+      });
+
+      if (!cursor) throw new Error("Appointment not found");
+
+      response.status(200).json({ status: true, data: cursor._doc });
+    } catch (error) {
+      throw error;
+    }
   }
 );
 
